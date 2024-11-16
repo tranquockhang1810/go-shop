@@ -13,5 +13,5 @@ func main() {
 			"message": "Hello world!",
 		})
 	})
-	r.Run()
+	r.Run(":3000")
 }
