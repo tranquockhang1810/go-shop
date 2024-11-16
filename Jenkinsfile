@@ -9,7 +9,7 @@ pipline {
   stages {
       stage('Clone Repository') {
         steps {
-          git branch: 'master', url: 'https://github.com/tranquockhang1810/go-shop'
+          git branch: 'master', url: 'https://github.com/tranquockhang1810/go-shop.git'
         }
       }
 
