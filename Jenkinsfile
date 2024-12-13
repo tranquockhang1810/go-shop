@@ -4,6 +4,8 @@ pipeline {
     environment {
         DOCKER_IMAGE = 'tranquockhang181004/go-shop'
         DOCKER_TAG = 'ci-cd'
+        TELEGRAM_BOT_TOKEN = "7626023144:AAHKCwYHpghRHInMs7XaOes6SssmecpIon0"
+        TELEGRAM_CHAT_ID = "-1002433054280"
     }
 
     stages {
@@ -54,5 +56,21 @@ pipeline {
         always {
             cleanWs()
         }
+
+        success {
+            sendTelegramMessage("✅ Build #${BUILD_NUMBER} was successful! ✅")
+        }
+
+        failure {
+            sendTelegramMessage("❌ Build #${BUILD_NUMBER} failed. ❌")
+        }
     }
+}
+
+def sendTelegramMessage(String message) {
+    sh """
+    curl -s -X POST https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage \
+    -d chat_id=${TELEGRAM_CHAT_ID} \
+    -d text="${message}"
+    """
 }
