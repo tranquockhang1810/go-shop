@@ -15,3 +15,6 @@ func main() {
 	})
 	r.Run(":3000")
 }
+
+// docker exec -it --user root jenkins-go /bin/bash
+// chmod 666 /var/run/docker.sock
